@@ -1,0 +1,17 @@
+version: '3'
+services:
+  template-provider:
+    build:
+      context: ./.docker/template-provider
+      dockerfile: Dockerfile
+    ports:
+    - "8442:8442"
+  btc-node:
+    build:
+      context: ./.docker/bitcoin-core
+      dockerfile: Dockerfile
+    ports:
+    - "18444:18444"
+    tty: true
+    #volumes:
+    #- ./.docker/bitcoin.conf:/etc/bitcoin/bitcoin.conf
