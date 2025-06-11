@@ -12,6 +12,9 @@ services:
       target: "jdc"
     volumes:
     - ./.docker/stratum/jdc/cfg:/jdc/cfg
+    ports:
+    - "43986:43986"
+    - "35994:35994"
     networks:
       mining-net:
         ipv4_address: 10.10.0.2
@@ -46,3 +49,13 @@ services:
         ipv4_address: 10.10.0.4
     #volumes:
     #- ./.docker/bitcoin.conf:/etc/bitcoin/bitcoin.conf
+  jds:
+    build:
+      context: ./.docker/stratum
+      dockerfile: Dockerfile
+      target: "jds"
+    volumes:
+    - ./.docker/stratum/jds/cfg:/jds/cfg
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.6

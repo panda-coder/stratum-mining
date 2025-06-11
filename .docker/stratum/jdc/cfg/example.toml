@@ -1,5 +1,5 @@
 # SRI JDC config
-listening_address = "127.0.0.1:34265"
+listening_address = "0.0.0.0:34265"
 
 # Version support
 max_supported_version = 2
@@ -18,7 +18,7 @@ cert_validity_sec = 3600
 # tp_address = "127.0.0.1:8442"
 # Hosted testnet TP 
 tp_address = "10.10.0.3:8442"
-tp_authority_public_key = "9bwHCYnjhbHm4AS3pWg9MtAH83mzWohoJJJDELYBqZhDNqszDLc"
+#tp_authority_public_key = "9bwHCYnjhbHm4AS3pWg9MtAH83mzWohoJJJDELYBqZhDNqszDLc"
 
 # string to be added into `extranonce_prefix`
 # note: these bytes are fixed and they effectively reduce the search space available for the extranonce
