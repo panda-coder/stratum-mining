@@ -1,11 +1,39 @@
-version: '3'
+version: '3.8'
+networks:
+  mining-net:
+    ipam:
+      config:
+      - subnet: 10.10.0.0/24
 services:
+  jdc:
+    build:
+      context: ./.docker/stratum
+      dockerfile: Dockerfile
+      target: "jdc"
+    volumes:
+    - ./.docker/stratum/jdc/cfg:/jdc/cfg
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.2
   template-provider:
     build:
       context: ./.docker/template-provider
       dockerfile: Dockerfile
     ports:
     - "8442:8442"
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.3
+  pool:
+    build:
+      context: ./.docker/stratum
+      dockerfile: Dockerfile
+      target: "pool"
+    volumes:
+    - ./.docker/stratum/pool/cfg:/pool/cfg
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.5
   btc-node:
     build:
       context: ./.docker/bitcoin-core
@@ -13,5 +41,8 @@ services:
     ports:
     - "18444:18444"
     tty: true
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.4
     #volumes:
     #- ./.docker/bitcoin.conf:/etc/bitcoin/bitcoin.conf

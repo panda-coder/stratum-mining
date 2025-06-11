@@ -13,4 +13,4 @@ WORKDIR /app
 
 COPY --from=stage /app/bitcoin-sv2-tp-0.1.17/ /app/bitcoin-sv2 
 
-CMD [ "/app/bitcoin-sv2/bin/bitcoind", "-regtest", "-sv2", "-sv2port=8442", "-debug=sv2" ]
+CMD [ "/app/bitcoin-sv2/bin/bitcoind", "-regtest", "-sv2", "-sv2bind=0.0.0.0:8442", "-debug=sv2" ]
