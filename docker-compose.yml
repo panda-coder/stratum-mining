@@ -13,8 +13,7 @@ services:
     volumes:
     - ./.docker/stratum/jdc/cfg:/jdc/cfg
     ports:
-    - "43986:43986"
-    - "35994:35994"
+    - "34265:34265"
     networks:
       mining-net:
         ipv4_address: 10.10.0.2
@@ -32,6 +31,8 @@ services:
       context: ./.docker/stratum
       dockerfile: Dockerfile
       target: "pool"
+    ports:
+    - "34254:34254"
     volumes:
     - ./.docker/stratum/pool/cfg:/pool/cfg
     networks:
@@ -71,3 +72,11 @@ services:
     networks:
       mining-net:
         ipv4_address: 10.10.0.7
+  cpuminer:
+    build:
+      context: ./.docker/cpuminer
+      dockerfile: Dockerfile
+      target: "cpuminer"
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.8
