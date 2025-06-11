@@ -9,6 +9,7 @@ RUN git clone https://github.com/stratum-mining/stratum.git
 RUN cd stratum/roles/jd-client/ && cargo build --release
 RUN cd stratum/roles/pool/ && cargo build --release
 RUN cd stratum/roles/jd-server/ && cargo build --release
+RUN cd stratum/roles/translator/ && cargo build --release
 
 
 
@@ -43,3 +44,15 @@ COPY --from=base /stratum/stratum/roles/target/release/ /jds
 COPY --from=base /stratum/stratum/roles/jd-server/config-examples/ /jds
 
 ENTRYPOINT [ "./jd_server", "-c", "cfg/example.toml" ]
+
+
+
+FROM alpine:latest AS tproxy
+
+WORKDIR /tproxy
+
+
+COPY --from=base /stratum/stratum/roles/target/release/ /tproxy
+COPY --from=base /stratum/stratum/roles/translator/config-examples/ /tproxy
+
+ENTRYPOINT [ "./translator_sv2", "-c", "cfg/example.toml" ]

@@ -59,3 +59,15 @@ services:
     networks:
       mining-net:
         ipv4_address: 10.10.0.6
+  translator-proxy:
+    build:
+      context: ./.docker/stratum
+      dockerfile: Dockerfile
+      target: "tproxy"
+    volumes:
+    - ./.docker/stratum/tproxy/cfg:/tproxy/cfg
+    ports:
+    - "34255:34255"
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.7
