@@ -23,6 +23,9 @@ services:
       dockerfile: Dockerfile
     ports:
     - "8442:8442"
+    - "18443:18443"
+    volumes:
+    - ./.docker/template-provider/data:/app/data
     networks:
       mining-net:
         ipv4_address: 10.10.0.3

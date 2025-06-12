@@ -21,6 +21,8 @@ WORKDIR /jdc
 COPY --from=base /stratum/stratum/roles/target/release/jd_client /jdc
 COPY --from=base /stratum/stratum/roles/jd-client/config-examples/ /jdc
 
+EXPOSE 34265
+
 ENTRYPOINT [ "./jd_client", "-c", "cfg/example.toml" ]
 
 
@@ -47,12 +49,12 @@ ENTRYPOINT [ "./jd_server", "-c", "cfg/example.toml" ]
 
 
 
-FROM alpine:latest AS tproxy
+FROM debian:bookworm-slim AS tproxy
 
 WORKDIR /tproxy
 
 
-COPY --from=base /stratum/stratum/roles/target/release/ /tproxy
+COPY --from=base /stratum/stratum/roles/target/release/translator_sv2 /tproxy
 COPY --from=base /stratum/stratum/roles/translator/config-examples/ /tproxy
 
 ENTRYPOINT [ "./translator_sv2", "-c", "cfg/example.toml" ]
