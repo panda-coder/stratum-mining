@@ -83,3 +83,20 @@ services:
     networks:
       mining-net:
         ipv4_address: 10.10.0.8
+  btc-explorer:
+    build:
+      context: ./.docker/btc-explorer
+      dockerfile: Dockerfile
+      target: "btc-explorer"
+    environment:
+      - BTCEXP_HOST=0.0.0.0
+      - BTCEXP_PORT=3002
+      - BTCEXP_BITCOIND_HOST=template-provider
+      - BTCEXP_BITCOIND_PORT=18443
+      - BTCEXP_BITCOIND_USER=username
+      - BTCEXP_BITCOIND_PASS=password
+    ports:
+      - "3002:3002"
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.9
