@@ -30,9 +30,10 @@ FROM alpine:latest AS pool
 
 WORKDIR /pool
 
-
 COPY --from=base /stratum/stratum/roles/target/release/pool_sv2 /pool
 COPY --from=base /stratum/stratum/roles/pool/config-examples/ /pool
+
+EXPOSE 34254
 
 ENTRYPOINT [ "./pool_sv2", "-c", "cfg/example.toml" ]
 

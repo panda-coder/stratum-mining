@@ -12,7 +12,9 @@ FROM debian:bookworm-slim
 WORKDIR /app
 
 COPY --from=stage /app/bitcoin-sv2-tp-0.1.17/ /app/bitcoin-sv2 
+COPY ./start.sh /app/start.sh
 
 EXPOSE 18443
 
-CMD [ "/app/bitcoin-sv2/bin/bitcoind", "-regtest", "-sv2", "-sv2bind=0.0.0.0:8442", "-debug=sv2", "-rpcuser=username", "-rpcpassword=password", "-rpcbind=0.0.0.0:18443", "-rpcallowip=0.0.0.0/0", "-datadir=./data" ]
+
+CMD [ "./start.sh" ]

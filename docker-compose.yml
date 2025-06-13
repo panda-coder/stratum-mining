@@ -26,6 +26,7 @@ services:
     - "18443:18443"
     volumes:
     - ./.docker/template-provider/data:/app/data
+    - ./.docker/template-provider/cfg:/app/cfg
     networks:
       mining-net:
         ipv4_address: 10.10.0.3
