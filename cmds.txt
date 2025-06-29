@@ -1,0 +1,5 @@
+/app/bitcoin-sv2/bin/bitcoin-cli -regtest -rpcport=18443 -rpcuser=username -rpcpassword=password generatetoaddress 101 $(/app/bitcoin-sv2/bin/bitcoin-cli -regtest -rpcport=18443 -rpcuser=username -rpcpassword=password getnewaddress)
+/app/bitcoin-sv2/bin/bitcoin-cli -regtest -rpcport=18443 -rpcuser=username -rpcpassword=password sendtoaddress $(
+  /app/bitcoin-sv2/bin/bitcoin-cli -regtest -rpcport=18443 -rpcuser=username -rpcpassword=password getnewaddress
+) 0.001
+
