@@ -101,3 +101,11 @@ services:
     networks:
       mining-net:
         ipv4_address: 10.10.0.9
+  mining-device:
+    build:
+      context: ./.docker/stratum
+      dockerfile: Dockerfile
+      target: "miningdevice"
+    networks:
+      mining-net:
+        ipv4_address: 10.10.0.10
